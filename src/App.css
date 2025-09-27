@@ -1,0 +1,45 @@
+/* German Case Color Styling */
+.nominative {
+  color: #e74c3c !important;
+  background: rgba(231, 76, 60, 0.1) !important;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.accusative {
+  color: #3498db !important;
+  background: rgba(52, 152, 219, 0.1) !important;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.dative {
+  color: #27ae60 !important;
+  background: rgba(39, 174, 96, 0.1) !important;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.genitive {
+  color: #9b59b6 !important;
+  background: rgba(155, 89, 182, 0.1) !important;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* Gender-based underlines */
+.gender-masculine {
+  border-bottom: 3px solid #2563eb !important; /* Blue underline for masculine */
+}
+
+.gender-feminine {
+  border-bottom: 3px solid #dc2626 !important; /* Red underline for feminine */
+}
+
+.gender-neuter {
+  border-bottom: 3px solid #16a34a !important; /* Green underline for neuter */
+}
