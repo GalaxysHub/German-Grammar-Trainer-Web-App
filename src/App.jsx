@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import SentenceDisplay from './components/SentenceDisplay'
 import QuizMode from './components/QuizMode'
 import FilterControls from './components/FilterControls'
+import ComponentErrorBoundary from './components/ComponentErrorBoundary'
 import { germanSentences } from './data/sentences'
 import { getSentenceMetadata } from './utils/genderDetection'
 
@@ -13,7 +14,8 @@ function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [filters, setFilters] = useState({
     cases: [], // Empty array means "all cases"
-    genders: [] // Empty array means "all genders"
+    genders: [], // Empty array means "all genders"
+    pronounsOnly: false // Boolean flag for pronoun-only filtering
   });
 
   useEffect(() => {
@@ -32,19 +34,23 @@ function App() {
     localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
   }, [isDarkMode]);
 
-  // Filter sentences based on selected cases and genders
+  // Filter sentences based on selected cases, genders, and pronouns
   const filteredSentences = useMemo(() => {
     return germanSentences.filter(sentence => {
       const metadata = getSentenceMetadata(sentence);
       
-      // If no filters are set, show all sentences
+      // Check case filter
       const casesMatch = filters.cases.length === 0 || 
         filters.cases.some(caseFilter => metadata.cases.includes(caseFilter));
       
+      // Check gender filter
       const gendersMatch = filters.genders.length === 0 || 
         filters.genders.some(genderFilter => metadata.genders.includes(genderFilter));
       
-      return casesMatch && gendersMatch;
+      // Check pronoun filter
+      const pronounsMatch = !filters.pronounsOnly || metadata.hasPronouns;
+      
+      return casesMatch && gendersMatch && pronounsMatch;
     });
   }, [filters]);
 
@@ -70,12 +76,14 @@ function App() {
   };
 
   const resetFilters = () => {
-    setFilters({ cases: [], genders: [] });
+    setFilters({ cases: [], genders: [], pronounsOnly: false });
   };
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-      <Navbar isDarkMode={isDarkMode} toggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
+      <ComponentErrorBoundary componentName="Navbar">
+        <Navbar isDarkMode={isDarkMode} toggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
+      </ComponentErrorBoundary>
       
       <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] p-8">
         <header className="text-center mb-12">
@@ -113,24 +121,26 @@ function App() {
             <div className="grid grid-cols-3 gap-4 text-center">
               <div className="legend-item">
                 <span className="gender-masculine px-3 py-1 rounded">Masculine</span>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Blue underline</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">Blue highlight</div>
               </div>
               <div className="legend-item">
                 <span className="gender-feminine px-3 py-1 rounded">Feminine</span>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Red underline</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">Red highlight</div>
               </div>
               <div className="legend-item">
                 <span className="gender-neuter px-3 py-1 rounded">Neuter</span>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Green underline</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">Green highlight</div>
               </div>
             </div>
           </div>
 
-          <FilterControls
-            filters={filters}
-            onFilterChange={handleFilterChange}
-            onReset={resetFilters}
-          />
+          <ComponentErrorBoundary componentName="FilterControls">
+            <FilterControls
+              filters={filters}
+              onFilterChange={handleFilterChange}
+              onReset={resetFilters}
+            />
+          </ComponentErrorBoundary>
           
           {filteredSentences.length === 0 ? (
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 text-center">
@@ -171,12 +181,40 @@ function App() {
               </div>
               
               {isQuizMode ? (
-                <QuizMode 
-                  sentence={filteredSentences[currentSentenceIndex]} 
-                  onNext={nextSentence}
-                />
+                <ComponentErrorBoundary 
+                  componentName="QuizMode"
+                  fallback={
+                    <div className="text-center py-8">
+                      <p className="text-gray-600 dark:text-gray-400 mb-4">
+                        Quiz mode is temporarily unavailable.
+                      </p>
+                      <button
+                        onClick={() => setIsQuizMode(false)}
+                        className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg"
+                      >
+                        Switch to Study Mode
+                      </button>
+                    </div>
+                  }
+                >
+                  <QuizMode 
+                    sentence={filteredSentences[currentSentenceIndex]} 
+                    onNext={nextSentence}
+                  />
+                </ComponentErrorBoundary>
               ) : (
-                <SentenceDisplay sentence={filteredSentences[currentSentenceIndex]} />
+                <ComponentErrorBoundary 
+                  componentName="SentenceDisplay"
+                  fallback={
+                    <div className="text-center py-8">
+                      <p className="text-gray-600 dark:text-gray-400">
+                        Unable to display sentence. Please try the next sentence.
+                      </p>
+                    </div>
+                  }
+                >
+                  <SentenceDisplay sentence={filteredSentences[currentSentenceIndex]} />
+                </ComponentErrorBoundary>
               )}
               
               <div className="flex justify-between mt-8">

@@ -59,10 +59,40 @@ export const detectGender = (text) => {
   return null; // Unknown gender
 };
 
-// Helper function to get all cases and genders from a sentence
+// Helper function to detect if a word is a pronoun
+export const detectPronoun = (text) => {
+  const lowerText = text.toLowerCase().trim();
+  
+  // Personal pronouns
+  const personalPronouns = [
+    'ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr', 'sie',
+    'mich', 'dich', 'ihn', 'uns', 'euch',
+    'mir', 'dir', 'ihm', 'ihr', 'uns', 'euch', 'ihnen',
+    'meiner', 'deiner', 'seiner', 'ihrer', 'unser', 'euer'
+  ];
+  
+  // Interrogative pronouns
+  const interrogativePronouns = ['wer', 'wen', 'wem', 'wessen'];
+  
+  // Possessive pronouns
+  const possessivePronouns = [
+    'mein', 'dein', 'sein', 'ihr', 'unser', 'euer',
+    'meine', 'deine', 'seine', 'ihre', 'unsere', 'eure',
+    'meinen', 'deinen', 'seinen', 'ihren', 'unseren', 'euren',
+    'meinem', 'deinem', 'seinem', 'ihrem', 'unserem', 'eurem',
+    'meines', 'deines', 'seines', 'ihres', 'unseres', 'eures'
+  ];
+  
+  return personalPronouns.includes(lowerText) || 
+         interrogativePronouns.includes(lowerText) ||
+         possessivePronouns.includes(lowerText);
+};
+
+// Helper function to get all cases, genders, and pronouns from a sentence
 export const getSentenceMetadata = (sentence) => {
   const cases = new Set();
   const genders = new Set();
+  let hasPronouns = false;
   
   sentence.german.forEach(part => {
     if (part.case) {
@@ -71,11 +101,17 @@ export const getSentenceMetadata = (sentence) => {
       if (gender) {
         genders.add(gender);
       }
+      
+      // Check if this part is a pronoun
+      if (part.isPronoun || detectPronoun(part.text)) {
+        hasPronouns = true;
+      }
     }
   });
   
   return {
     cases: Array.from(cases),
-    genders: Array.from(genders)
+    genders: Array.from(genders),
+    hasPronouns
   };
 };

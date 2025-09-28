@@ -30,7 +30,7 @@ export const germanSentences = [
   {
     id: 4,
     german: [
-      { text: "Ich", case: "nominative" },
+      { text: "Ich", case: "nominative", isPronoun: true },
       { text: " lese gerne Bücher." }
     ],
     english: "I like to read books.",
@@ -39,7 +39,7 @@ export const germanSentences = [
   {
     id: 5,
     german: [
-      { text: "Du", case: "nominative" },
+      { text: "Du", case: "nominative", isPronoun: true },
       { text: " bist sehr nett." }
     ],
     english: "You are very nice.",
@@ -135,7 +135,7 @@ export const germanSentences = [
     id: 15,
     german: [
       { text: "Sie kennt " },
-      { text: "mich", case: "accusative" },
+      { text: "mich", case: "accusative", isPronoun: true },
       { text: " sehr gut." }
     ],
     english: "She knows me very well.",
@@ -145,7 +145,7 @@ export const germanSentences = [
     id: 16,
     german: [
       { text: "Ich rufe " },
-      { text: "dich", case: "accusative" },
+      { text: "dich", case: "accusative", isPronoun: true },
       { text: " morgen an." }
     ],
     english: "I'll call you tomorrow.",
@@ -436,9 +436,47 @@ export const germanSentences = [
     explanation: "ihrer (third person plural genitive pronoun after preposition 'trotz')"
   },
 
-  // MIXED CASE EXAMPLES with complex sentences
+  // INTERROGATIVE PRONOUNS (who/whom/whose)
   {
     id: 45,
+    german: [
+      { text: "Wer", case: "nominative", isPronoun: true },
+      { text: " ist das?" }
+    ],
+    english: "Who is that?",
+    explanation: "Wer (nominative interrogative pronoun 'who')"
+  },
+  {
+    id: 46,
+    german: [
+      { text: "Wen", case: "accusative", isPronoun: true },
+      { text: " siehst du dort?" }
+    ],
+    english: "Whom do you see there?",
+    explanation: "Wen (accusative interrogative pronoun 'whom' as direct object)"
+  },
+  {
+    id: 47,
+    german: [
+      { text: "Wem", case: "dative", isPronoun: true },
+      { text: " hilfst du?" }
+    ],
+    english: "Whom are you helping?",
+    explanation: "Wem (dative interrogative pronoun 'whom' after verb 'helfen')"
+  },
+  {
+    id: 48,
+    german: [
+      { text: "Wessen", case: "genitive", isPronoun: true },
+      { text: " Auto ist das?" }
+    ],
+    english: "Whose car is that?",
+    explanation: "Wessen (genitive interrogative pronoun 'whose')"
+  },
+
+  // MIXED CASE EXAMPLES with complex sentences
+  {
+    id: 49,
     german: [
       { text: "Der kluge Student", case: "nominative" },
       { text: " gibt " },
@@ -453,7 +491,7 @@ export const germanSentences = [
     explanation: "Mixed cases: Der kluge Student (nom), der freundlichen Lehrerin (dat), das schwere Buch (acc), seines Vaters (gen)"
   },
   {
-    id: 46,
+    id: 50,
     german: [
       { text: "Die elegante Dame", case: "nominative" },
       { text: " schenkt " },
@@ -468,11 +506,11 @@ export const germanSentences = [
     explanation: "Mixed cases: Die elegante Dame (nom), ihrem kleinen Enkel (dat), die goldene Uhr (acc), ihrer Großmutter (gen)"
   },
   {
-    id: 47,
+    id: 51,
     german: [
-      { text: "Ich", case: "nominative" },
+      { text: "Ich", case: "nominative", isPronoun: true },
       { text: " zeige " },
-      { text: "dir", case: "dative" },
+      { text: "dir", case: "dative", isPronoun: true },
       { text: " " },
       { text: "das alte Foto", case: "accusative" },
       { text: " " },
@@ -483,11 +521,11 @@ export const germanSentences = [
     explanation: "Mixed cases: Ich (nom pronoun), dir (dat pronoun), das alte Foto (acc), meines besten Freundes (gen)"
   },
   {
-    id: 48,
+    id: 52,
     german: [
-      { text: "Sie", case: "nominative" },
+      { text: "Sie", case: "nominative", isPronoun: true },
       { text: " erzählt " },
-      { text: "uns", case: "dative" },
+      { text: "uns", case: "dative", isPronoun: true },
       { text: " " },
       { text: "die spannende Geschichte", case: "accusative" },
       { text: " " },
