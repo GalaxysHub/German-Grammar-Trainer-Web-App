@@ -6,7 +6,7 @@
 }
 
 .accusative {
-  border-bottom: 3px solid #3498db !important;
+  border-bottom: 3px solid #74c0fc !important;
   padding: 0.3rem 0.6rem;
   font-weight: bold;
 }
@@ -57,40 +57,31 @@
   color: #d0bfff !important;
 }
 
-/* Gender-based highlights */
+/* Gender-based colors (no background) */
 .gender-masculine {
-  background: rgba(37, 99, 235, 0.15) !important; /* Blue highlight for masculine */
   padding: 0.3rem 0.6rem;
-  border-radius: 4px;
   color: #1e40af !important;
 }
 
 .gender-feminine {
-  background: rgba(220, 38, 38, 0.15) !important; /* Red highlight for feminine */
   padding: 0.3rem 0.6rem;
-  border-radius: 4px;
   color: #dc2626 !important;
 }
 
 .gender-neuter {
-  background: rgba(22, 163, 74, 0.15) !important; /* Green highlight for neuter */
   padding: 0.3rem 0.6rem;
-  border-radius: 4px;
   color: #16a34a !important;
 }
 
-/* Dark mode gender colors */
+/* Dark mode gender colors (no background) */
 .dark .gender-masculine {
-  background: rgba(59, 130, 246, 0.25) !important;
   color: #93c5fd !important;
 }
 
 .dark .gender-feminine {
-  background: rgba(239, 68, 68, 0.25) !important;
   color: #fca5a5 !important;
 }
 
 .dark .gender-neuter {
-  background: rgba(34, 197, 94, 0.25) !important;
   color: #86efac !important;
 }
