@@ -16,7 +16,7 @@ const FilterControls = ({ filters, onFilterChange, onReset }) => {
   };
 
   const handleGenderChange = (gender) => {
-    const allGenders = ['masculine', 'feminine', 'neuter'];
+    const allGenders = ['masculine', 'feminine', 'neuter', 'plural'];
     
     // If all genders are selected (empty array), populate with all except the clicked one
     if (filters.genders.length === 0) {
@@ -60,11 +60,11 @@ const FilterControls = ({ filters, onFilterChange, onReset }) => {
           </h4>
           <div className="space-y-2">
             {[
-              { key: 'nominative', label: 'Nominative', color: 'text-red-600' },
-              { key: 'accusative', label: 'Accusative', color: 'text-blue-600' },
-              { key: 'dative', label: 'Dative', color: 'text-green-600' },
-              { key: 'genitive', label: 'Genitive', color: 'text-purple-600' }
-            ].map(({ key, label, color }) => (
+              { key: 'nominative', label: 'Nominative' },
+              { key: 'accusative', label: 'Accusative' },
+              { key: 'dative', label: 'Dative' },
+              { key: 'genitive', label: 'Genitive' }
+            ].map(({ key, label }) => (
               <label key={key} className="flex items-center space-x-3 cursor-pointer">
                 <input
                   type="checkbox"
@@ -72,7 +72,7 @@ const FilterControls = ({ filters, onFilterChange, onReset }) => {
                   onChange={() => handleCaseChange(key)}
                   className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
                 />
-                <span className={`font-medium ${color}`}>{label}</span>
+                <span className={`font-medium ${key} !text-gray-800 dark:!text-white`}>{label}</span>
                 {allCasesSelected && (
                   <span className="text-xs text-gray-500">(all)</span>
                 )}
@@ -88,9 +88,10 @@ const FilterControls = ({ filters, onFilterChange, onReset }) => {
           </h4>
           <div className="space-y-2">
             {[
-              { key: 'masculine', label: 'Masculine (der)', color: 'text-blue-600' },
-              { key: 'feminine', label: 'Feminine (die)', color: 'text-red-600' },
-              { key: 'neuter', label: 'Neuter (das)', color: 'text-green-600' }
+              { key: 'masculine', label: 'Masculine (der)', color: 'text-blue-500' },
+              { key: 'feminine', label: 'Feminine (die)', color: 'text-pink-500' },
+              { key: 'neuter', label: 'Neuter (das)', color: 'text-green-600' },
+              { key: 'plural', label: 'Plural (die)', color: 'text-gray-500' }
             ].map(({ key, label, color }) => (
               <label key={key} className="flex items-center space-x-3 cursor-pointer">
                 <input
@@ -178,6 +179,12 @@ const FilterControls = ({ filters, onFilterChange, onReset }) => {
             Neuter Only
           </button>
           <button
+            onClick={() => onFilterChange({ cases: [], genders: ['plural'] })}
+            className="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 rounded transition-colors"
+          >
+            Plural Only
+          </button>
+          <button
             onClick={() => onFilterChange({ cases: [], genders: [], pronounsOnly: true })}
             className="px-3 py-1 text-sm bg-purple-100 hover:bg-purple-200 text-purple-700 rounded transition-colors"
           >
@@ -189,7 +196,7 @@ const FilterControls = ({ filters, onFilterChange, onReset }) => {
       <div className="mt-4 text-sm text-gray-600 dark:text-gray-400">
         {allCasesSelected && allGendersSelected && !filters.pronounsOnly
           ? "Showing all sentences"
-          : `Filtered: ${filters.cases.length || 4} case${(filters.cases.length || 4) !== 1 ? 's' : ''}, ${filters.genders.length || 3} gender${(filters.genders.length || 3) !== 1 ? 's' : ''}${filters.pronounsOnly ? ', pronouns only' : ''}`
+          : `Filtered: ${filters.cases.length || 4} case${(filters.cases.length || 4) !== 1 ? 's' : ''}, ${filters.genders.length || 4} gender${(filters.genders.length || 4) !== 1 ? 's' : ''}${filters.pronounsOnly ? ', pronouns only' : ''}`
         }
       </div>
     </div>

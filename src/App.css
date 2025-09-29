@@ -1,71 +1,71 @@
-/* German Case Color Styling - Now with underlines */
+/* German Case Color Styling - Professional palette */
 .nominative {
-  border-bottom: 3px solid #e74c3c !important;
+  border-bottom: 3px solid #dc2626 !important;
   padding: 0.3rem 0.6rem;
   font-weight: bold;
 }
 
 .accusative {
-  border-bottom: 3px solid #74c0fc !important;
+  border-bottom: 3px solid #87ceeb !important;
   padding: 0.3rem 0.6rem;
   font-weight: bold;
 }
 
 .dative {
-  border-bottom: 3px solid #27ae60 !important;
+  border-bottom: 3px solid #d97706 !important;
   padding: 0.3rem 0.6rem;
   font-weight: bold;
 }
 
 .genitive {
-  border-bottom: 3px solid #9b59b6 !important;
+  border-bottom: 3px solid #8000ff !important;
   padding: 0.3rem 0.6rem;
   font-weight: bold;
 }
 
 /* Light mode case colors */
 .nominative {
-  color: #e74c3c !important;
+  color: #dc2626 !important;
 }
 
 .accusative {
-  color: #3498db !important;
+  color: #87ceeb !important;
 }
 
 .dative {
-  color: #27ae60 !important;
+  color: #d97706 !important;
 }
 
 .genitive {
-  color: #9b59b6 !important;
+  color: #8000ff !important;
 }
 
 /* Dark mode case colors */
 .dark .nominative {
-  color: #ff6b6b !important;
+  color: #fca5a5 !important;
 }
 
 .dark .accusative {
-  color: #74c0fc !important;
+  color: #add8e6 !important;
 }
 
 .dark .dative {
-  color: #51cf66 !important;
+  color: #fbbf24 !important;
 }
 
 .dark .genitive {
-  color: #d0bfff !important;
+  color: #cc66ff !important;
 }
 
 /* Gender-based colors (no background) */
 .gender-masculine {
   padding: 0.3rem 0.6rem;
-  color: #1e40af !important;
+  color: #0080ff !important;
 }
 
 .gender-feminine {
   padding: 0.3rem 0.6rem;
-  color: #dc2626 !important;
+  color: #ff0080 !important;
 }
 
 .gender-neuter {
@@ -73,15 +73,24 @@
   color: #16a34a !important;
 }
 
+.gender-plural {
+  padding: 0.3rem 0.6rem;
+  color: #6b7280 !important;
+}
+
 /* Dark mode gender colors (no background) */
 .dark .gender-masculine {
-  color: #93c5fd !important;
+  color: #66ccff !important;
 }
 
 .dark .gender-feminine {
-  color: #fca5a5 !important;
+  color: #ff66cc !important;
 }
 
 .dark .gender-neuter {
   color: #86efac !important;
+}
+
+.dark .gender-plural {
+  color: #9ca3af !important;
 }

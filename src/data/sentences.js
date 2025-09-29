@@ -228,40 +228,48 @@ export const germanSentences = [
     german: [
       { text: "Er schenkt " },
       { text: "der netten Frau", case: "dative" },
-      { text: " Blumen." }
+      { text: " " },
+      { text: "Blumen", case: "accusative" },
+      { text: "." }
     ],
     english: "He gives flowers to the nice woman.",
-    explanation: "der netten Frau (feminine dative indirect object with adjective)"
+    explanation: "der netten Frau (feminine dative indirect object), Blumen (accusative direct object)"
   },
   {
     id: 25,
     german: [
       { text: "Wir geben " },
       { text: "dem müden Kind", case: "dative" },
-      { text: " ein Spielzeug." }
+      { text: " " },
+      { text: "ein Spielzeug", case: "accusative" },
+      { text: "." }
     ],
     english: "We give the tired child a toy.",
-    explanation: "dem müden Kind (neuter dative indirect object with adjective)"
+    explanation: "dem müden Kind (neuter dative indirect object), ein Spielzeug (neuter accusative direct object)"
   },
   {
     id: 26,
     german: [
       { text: "Sie gibt " },
       { text: "mir", case: "dative" },
-      { text: " ein Geschenk." }
+      { text: " " },
+      { text: "ein Geschenk", case: "accusative" },
+      { text: "." }
     ],
     english: "She gives me a gift.",
-    explanation: "mir (first person singular dative pronoun)"
+    explanation: "mir (first person singular dative pronoun), ein Geschenk (accusative direct object)"
   },
   {
     id: 27,
     german: [
       { text: "Ich bringe " },
       { text: "dir", case: "dative" },
-      { text: " das Buch." }
+      { text: " " },
+      { text: "das Buch", case: "accusative" },
+      { text: "." }
     ],
     english: "I bring you the book.",
-    explanation: "dir (second person singular dative pronoun)"
+    explanation: "dir (second person singular dative pronoun), das Buch (accusative direct object)"
   },
   {
     id: 28,
@@ -318,10 +326,12 @@ export const germanSentences = [
     german: [
       { text: "Der Chef gibt " },
       { text: "ihnen", case: "dative" },
-      { text: " eine Chance." }
+      { text: " " },
+      { text: "eine Chance", case: "accusative" },
+      { text: "." }
     ],
     english: "The boss gives them a chance.",
-    explanation: "ihnen (third person plural dative pronoun)"
+    explanation: "ihnen (third person plural dative pronoun), eine Chance (accusative direct object)"
   },
 
   // GENITIVE EXAMPLES (all genders + pronouns)
@@ -474,9 +484,73 @@ export const germanSentences = [
     explanation: "Wessen (genitive interrogative pronoun 'whose')"
   },
 
-  // MIXED CASE EXAMPLES with complex sentences
+  // PLURAL EXAMPLES (all cases)
   {
     id: 49,
+    german: [
+      { text: "Die neuen Bücher", case: "nominative", gender: "plural" },
+      { text: " sind interessant." }
+    ],
+    english: "The new books are interesting.",
+    explanation: "Die neuen Bücher (plural nominative subject with adjective)"
+  },
+  {
+    id: 50,
+    german: [
+      { text: "Ich kaufe " },
+      { text: "die roten Äpfel", case: "accusative", gender: "plural" },
+      { text: "." }
+    ],
+    english: "I buy the red apples.",
+    explanation: "die roten Äpfel (plural accusative direct object with adjective)"
+  },
+  {
+    id: 51,
+    german: [
+      { text: "Er hilft " },
+      { text: "den müden Kindern", case: "dative", gender: "plural" },
+      { text: "." }
+    ],
+    english: "He helps the tired children.",
+    explanation: "den müden Kindern (plural dative after verb 'helfen' with adjective)"
+  },
+  {
+    id: 52,
+    german: [
+      { text: "Die Farbe " },
+      { text: "der alten Häuser", case: "genitive", gender: "plural" },
+      { text: " gefällt mir." }
+    ],
+    english: "I like the color of the old houses.",
+    explanation: "der alten Häuser (plural genitive showing possession with adjective)"
+  },
+  {
+    id: 53,
+    german: [
+      { text: "Wir geben " },
+      { text: "den kleinen Tieren", case: "dative", gender: "plural" },
+      { text: " " },
+      { text: "frisches Wasser", case: "accusative" },
+      { text: "." }
+    ],
+    english: "We give fresh water to the small animals.",
+    explanation: "den kleinen Tieren (plural dative indirect object), frisches Wasser (accusative direct object)"
+  },
+  {
+    id: 54,
+    german: [
+      { text: "Die intelligenten Studenten", case: "nominative", gender: "plural" },
+      { text: " lesen " },
+      { text: "die schweren Bücher", case: "accusative", gender: "plural" },
+      { text: "." }
+    ],
+    english: "The intelligent students read the heavy books.",
+    explanation: "Die intelligenten Studenten (plural nominative subject), die schweren Bücher (plural accusative direct object)"
+  },
+
+  // MIXED CASE EXAMPLES with complex sentences
+  {
+    id: 55,
     german: [
       { text: "Der kluge Student", case: "nominative" },
       { text: " gibt " },
@@ -491,7 +565,7 @@ export const germanSentences = [
     explanation: "Mixed cases: Der kluge Student (nom), der freundlichen Lehrerin (dat), das schwere Buch (acc), seines Vaters (gen)"
   },
   {
-    id: 50,
+    id: 56,
     german: [
       { text: "Die elegante Dame", case: "nominative" },
       { text: " schenkt " },
@@ -506,7 +580,7 @@ export const germanSentences = [
     explanation: "Mixed cases: Die elegante Dame (nom), ihrem kleinen Enkel (dat), die goldene Uhr (acc), ihrer Großmutter (gen)"
   },
   {
-    id: 51,
+    id: 57,
     german: [
       { text: "Ich", case: "nominative", isPronoun: true },
       { text: " zeige " },
@@ -521,7 +595,7 @@ export const germanSentences = [
     explanation: "Mixed cases: Ich (nom pronoun), dir (dat pronoun), das alte Foto (acc), meines besten Freundes (gen)"
   },
   {
-    id: 52,
+    id: 58,
     german: [
       { text: "Sie", case: "nominative", isPronoun: true },
       { text: " erzählt " },
